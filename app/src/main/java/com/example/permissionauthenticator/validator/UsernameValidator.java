@@ -6,7 +6,7 @@ public class UsernameValidator extends Rule {
     private Pattern usernameRegex;
 
     public UsernameValidator() {
-        usernameRegex = Pattern.compile("[/d/w]{8,}");
+        usernameRegex = Pattern.compile("/w{3,}");
     }
 
     @Override
