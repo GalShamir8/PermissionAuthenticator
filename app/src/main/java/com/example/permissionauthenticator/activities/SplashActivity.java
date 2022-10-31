@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import com.example.permissionauthenticator.R;
 import com.example.permissionauthenticator.validator.AuthenticateValidator;
-import com.example.permissionauthenticator.validator.BatteryLevelValidtor;
+import com.example.permissionauthenticator.validator.BatteryLevelValidator;
 import com.example.permissionauthenticator.validator.FlashSensorValidator;
 import com.example.permissionauthenticator.validator.PasswordValidator;
 import com.example.permissionauthenticator.validator.UsernameValidator;
@@ -30,7 +30,7 @@ public class SplashActivity extends AppCompatActivity {
                 .addRules(new UsernameValidator())
                 .addRules(new PasswordValidator())
                 .addRules(new FlashSensorValidator())
-                .addRules(new BatteryLevelValidtor())
+                .addRules(new BatteryLevelValidator())
                 .addRules(new WifiValidator());
     }
 

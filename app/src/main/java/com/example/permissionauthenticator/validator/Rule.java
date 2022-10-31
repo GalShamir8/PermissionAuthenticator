@@ -1,4 +1,5 @@
 package com.example.permissionauthenticator.validator;
 
-public class Rule {
+public abstract class Rule {
+    public abstract boolean validate();
 }
