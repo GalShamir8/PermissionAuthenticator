@@ -6,6 +6,11 @@ import android.os.Bundle;
 
 import com.example.permissionauthenticator.R;
 import com.example.permissionauthenticator.validator.AuthenticateValidator;
+import com.example.permissionauthenticator.validator.BatteryLevelValidtor;
+import com.example.permissionauthenticator.validator.FlashSensorValidator;
+import com.example.permissionauthenticator.validator.PasswordValidator;
+import com.example.permissionauthenticator.validator.UsernameValidator;
+import com.example.permissionauthenticator.validator.WifiValidator;
 
 
 public class SplashActivity extends AppCompatActivity {
@@ -15,8 +20,18 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        initValidator();
         initViews();
         setListeners();
+    }
+
+    private void initValidator() {
+        validator = new AuthenticateValidator()
+                .addRules(new UsernameValidator())
+                .addRules(new PasswordValidator())
+                .addRules(new FlashSensorValidator())
+                .addRules(new BatteryLevelValidtor())
+                .addRules(new WifiValidator());
     }
 
     private void setListeners() {
