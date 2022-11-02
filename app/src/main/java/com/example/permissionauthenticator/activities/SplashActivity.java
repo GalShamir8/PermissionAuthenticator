@@ -31,7 +31,7 @@ public class SplashActivity extends AppCompatActivity {
                 .addRules(new PasswordValidator())
                 .addRules(new FlashSensorValidator())
                 .addRules(new BatteryLevelValidator())
-                .addRules(new WifiValidator());
+                .addRules(new WifiValidator(getApplicationContext()));
     }
 
     private void setListeners() {
