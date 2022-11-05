@@ -31,4 +31,20 @@ public class AuthenticateValidator {
         }
         return true;
     }
+
+    public void setUsername(String usernameInput) {
+        for (Rule r: rules){
+            if (r instanceof UsernameValidator){
+                ((UsernameValidator) r).setUsernameInput(usernameInput);
+            }
+        }
+    }
+
+    public void setPassword(String passwordInput) {
+        for (Rule r: rules){
+            if (r instanceof PasswordValidator){
+                ((PasswordValidator) r).setPasswordInput(passwordInput);
+            }
+        }
+    }
 }
