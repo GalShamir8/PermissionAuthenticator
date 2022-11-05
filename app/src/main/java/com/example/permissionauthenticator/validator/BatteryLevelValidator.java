@@ -1,28 +1,21 @@
 package com.example.permissionauthenticator.validator;
 
-import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.Intent;
 import android.os.BatteryManager;
 
-public class BatteryLevelValidator extends Rule {
-    private float requiredLevel = 30;
-    private BroadcastReceiver batteryInfoReceiver;
-    private float currentLevel = 0;
 
-    public BatteryLevelValidator() {
-        batteryInfoReceiver = new BroadcastReceiver(){
-            @Override
-            public void onReceive(Context ctx, Intent intent) {
-                int level = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
-                int scale = intent.getIntExtra(BatteryManager.EXTRA_SCALE, -1);
-                currentLevel = level * 100 / (float)scale;
-            }
-        };
+public class BatteryLevelValidator extends Rule {
+    private static final int REQUIRED_BATTERY_LEVEL = 30;
+    private BatteryManager batteryManager;
+
+    public BatteryLevelValidator(Context ctx) {
+        batteryManager = (BatteryManager)ctx.getSystemService(Context.BATTERY_SERVICE);
     }
 
     @Override
     public boolean validate(Object... params) {
-        return currentLevel >= requiredLevel;
+        int currentBatteryLevel = batteryManager.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY);
+
+        return currentBatteryLevel >= REQUIRED_BATTERY_LEVEL;
     }
 }
