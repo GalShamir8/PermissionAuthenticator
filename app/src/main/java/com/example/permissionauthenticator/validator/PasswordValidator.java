@@ -3,13 +3,18 @@ import java.util.regex.Pattern;
 
 public class PasswordValidator extends Rule {
     private Pattern passwordRegex;
+    private String passwordInput;
 
     public PasswordValidator() {
         passwordRegex = Pattern.compile("[/d/w]{8,}");
     }
 
+    public void setPasswordInput(String passwordInput){
+        this.passwordInput = passwordInput;
+    }
+
     @Override
-    public boolean validate(Object... params) {
-        return passwordRegex.matcher((String)(params[0])).find();
+    public boolean validate() {
+        return passwordRegex.matcher(passwordInput).find();
     }
 }

@@ -11,7 +11,7 @@ public class WifiValidator extends Rule {
     }
 
     @Override
-    public boolean validate(Object... params) {
+    public boolean validate() {
         return ((WifiManager)ctx.getSystemService(Context.WIFI_SERVICE)).isWifiEnabled();
     }
 }

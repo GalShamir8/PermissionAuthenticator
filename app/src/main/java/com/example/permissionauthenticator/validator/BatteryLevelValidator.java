@@ -13,7 +13,7 @@ public class BatteryLevelValidator extends Rule {
     }
 
     @Override
-    public boolean validate(Object... params) {
+    public boolean validate() {
         int currentBatteryLevel = batteryManager.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY);
 
         return currentBatteryLevel >= REQUIRED_BATTERY_LEVEL;
