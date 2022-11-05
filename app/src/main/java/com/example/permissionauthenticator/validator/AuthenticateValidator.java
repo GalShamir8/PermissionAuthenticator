@@ -23,4 +23,12 @@ public class AuthenticateValidator {
         rules.add(rule);
         return this;
     }
+
+    public boolean validate(){
+        for (Rule r: rules){
+            if (!r.validate())
+                return false;
+        }
+        return true;
+    }
 }
