@@ -2,7 +2,10 @@ package com.example.permissionauthenticator.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.widget.EditText;
 
 import com.example.permissionauthenticator.R;
 import com.example.permissionauthenticator.validator.AuthenticateValidator;
@@ -16,8 +19,11 @@ import com.google.android.material.textview.MaterialTextView;
 
 public class SplashActivity extends AppCompatActivity {
     private AuthenticateValidator validator;
-    private MaterialTextView txt;
-    private MaterialButton btn;
+    private EditText main_EDT_username;
+    private EditText main_EDT_password;
+    private MaterialTextView main_LBL_wifi;
+    private MaterialTextView main_LBL_battery;
+    private MaterialButton main_BTN_login;
 
 
     @Override
@@ -38,15 +44,34 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void setListeners() {
-        btn.setOnClickListener(e -> setTxt("" + validator.validate()));
+        main_BTN_login.setOnClickListener(e -> checkValidLogin());
     }
 
-    private void setTxt(String message) {
-        txt.setText(message);
+    private void checkValidLogin() {
+        validator.setUsername(main_EDT_username.getText().toString());
+        validator.setPassword(main_EDT_password.getText().toString());
+        if (validator.validate()) {
+            setLabels();
+            login();
+        }
+        
     }
+
+    private void setLabels() {
+        main_LBL_wifi.setTextColor(Color.GREEN);
+        main_LBL_battery.setTextColor(Color.GREEN);
+    }
+
+    private void login() {
+        startActivity(new Intent(this, SuccessActivity.class));
+    }
+
 
     private void initViews() {
-        txt = findViewById(R.id.txt);
-        btn = findViewById(R.id.btn);
+        main_EDT_username = findViewById(R.id.main_EDT_username);
+        main_EDT_password = findViewById(R.id.main_EDT_password);
+        main_LBL_wifi = findViewById(R.id.main_LBL_wifi);
+        main_LBL_battery = findViewById(R.id.main_LBL_battery);
+        main_BTN_login = findViewById(R.id.main_BTN_login);
     }
 }
