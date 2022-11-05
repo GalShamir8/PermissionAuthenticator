@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">PermissionAuthenticator</string>
+    <string name="username">username</string>
+    <string name="minimum_3_characters_only_letters">minimum 3 characters only letters</string>
+    <string name="minimum_8_signs_only_letters_and_numbers">minimum 8 signs only letters and numbers</string>
+    <string name="log_in">Log in</string>
+    <string name="wifi_enabled">WiFi enabled</string>
+    <string name="battery_level_above_required">Battery level above required</string>
 </resources>
