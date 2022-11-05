@@ -1,5 +1,7 @@
 package com.example.permissionauthenticator.validator;
 
+import android.util.Log;
+
 import java.util.regex.Pattern;
 
 public class UsernameValidator extends Rule {
@@ -7,7 +9,7 @@ public class UsernameValidator extends Rule {
     private String usernameInput;
 
     public UsernameValidator() {
-        usernameRegex = Pattern.compile("/w{3,}");
+        usernameRegex = Pattern.compile("[\\w]{3,}");
     }
 
     public void setUsernameInput(String usernameInput){

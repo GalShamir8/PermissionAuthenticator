@@ -1,4 +1,6 @@
 package com.example.permissionauthenticator.validator;
+import android.util.Log;
+
 import java.util.regex.Pattern;
 
 public class PasswordValidator extends Rule {
@@ -6,7 +8,7 @@ public class PasswordValidator extends Rule {
     private String passwordInput;
 
     public PasswordValidator() {
-        passwordRegex = Pattern.compile("[/d/w]{8,}");
+        passwordRegex = Pattern.compile("[\\d\\w]{8,}");
     }
 
     public void setPasswordInput(String passwordInput){
