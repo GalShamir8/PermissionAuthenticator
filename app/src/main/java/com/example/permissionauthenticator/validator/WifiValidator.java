@@ -4,14 +4,14 @@ import android.content.Context;
 import android.net.wifi.WifiManager;
 
 public class WifiValidator extends Rule {
-    private WifiManager wifi;
+    private Context ctx;
 
     public WifiValidator(Context ctx) {
-        wifi = (WifiManager)ctx.getSystemService(Context.WIFI_SERVICE);
+        this.ctx = ctx;
     }
 
     @Override
     public boolean validate(Object... params) {
-        return wifi.isWifiEnabled();
+        return ((WifiManager)ctx.getSystemService(Context.WIFI_SERVICE)).isWifiEnabled();
     }
 }
