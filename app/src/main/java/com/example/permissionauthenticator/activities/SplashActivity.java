@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.widget.EditText;
 
 import com.example.permissionauthenticator.R;
@@ -18,6 +19,7 @@ import com.google.android.material.textview.MaterialTextView;
 
 
 public class SplashActivity extends AppCompatActivity {
+    private static final int STATUS_TIME_INTERVAL = 3000;
     private AuthenticateValidator validator;
     private EditText main_EDT_username;
     private EditText main_EDT_password;
@@ -45,6 +47,15 @@ public class SplashActivity extends AppCompatActivity {
 
     private void setListeners() {
         main_BTN_login.setOnClickListener(e -> checkValidLogin());
+        Handler handler = new Handler();
+       handler.postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                checkStatus();
+                handler.postDelayed(this, STATUS_TIME_INTERVAL);
+            }
+        }, STATUS_TIME_INTERVAL);
     }
 
     private void checkValidLogin() {
@@ -73,5 +84,24 @@ public class SplashActivity extends AppCompatActivity {
         main_LBL_wifi = findViewById(R.id.main_LBL_wifi);
         main_LBL_battery = findViewById(R.id.main_LBL_battery);
         main_BTN_login = findViewById(R.id.main_BTN_login);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(validator != null){
+           checkStatus();
+        }
+    }
+
+    private void checkStatus() {
+        if (validator.checkBatteryStatus())
+            main_LBL_battery.setTextColor(Color.GREEN);
+        else
+            main_LBL_battery.setTextColor(Color.RED);
+        if (validator.checkWiFiStatus())
+            main_LBL_wifi.setTextColor(Color.GREEN);
+        else
+            main_LBL_wifi.setTextColor(Color.RED);
     }
 }

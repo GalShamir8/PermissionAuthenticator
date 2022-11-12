@@ -47,4 +47,22 @@ public class AuthenticateValidator {
             }
         }
     }
+
+    public boolean checkWiFiStatus() {
+        for (Rule r: rules){
+            if (r instanceof WifiValidator){
+                return r.validate();
+            }
+        }
+        return false;
+    }
+
+    public boolean checkBatteryStatus() {
+        for (Rule r: rules){
+            if (r instanceof BatteryLevelValidator){
+                return r.validate();
+            }
+        }
+        return false;
+    }
 }
